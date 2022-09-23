@@ -8,6 +8,71 @@
    background-color: #c8cacc;
  }
 
+ .printable {
+   display: none
+ }
+
+ .no_printable {
+   display: block;
+ }
+
+ .flex {
+   display: flex;
+   flex-direction: column;
+   /* align-items: center; */
+ }
+
+ @media print {
+   * {
+     background: transparent !important;
+     color: #000 !important;
+     text-shadow: none !important;
+     filter: none !important;
+     -ms-filter: none !important;
+   }
+
+   body {
+     margin: 0;
+     padding: 0;
+     line-height: 1.4em;
+   }
+
+   nav,
+   footer,
+   video,
+   audio,
+   object,
+   embed {
+     display: none;
+   }
+
+   @page {
+     size: auto;
+     /* auto is the initial value */
+     margin: 0mm;
+     /* this affects the margin in the printer settings */
+   }
+
+   .no_printable {
+     display: none;
+   }
+
+   .printable {
+     display: block;
+     /* margin-left: 80px; */
+
+   }
+
+   .printable_container {
+     /* margin: 80px 0px 80px 0px; */
+   }
+
+
+
+
+
+ }
+
  /*
 a {
   color: inherit;

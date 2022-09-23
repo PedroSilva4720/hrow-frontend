@@ -26,7 +26,9 @@ export const GenericInput = styled('input', {
     outline: theme.background.gray,
     fontSize: '14px',
     color: '#fff',
-
-    // border: 'none',
+  },
+  '&::-webkit-outer-spin-button, &::-webkit-inner-spin-button': {
+    WebkitAppearance: 'none',
+    margin: 0,
   },
 })

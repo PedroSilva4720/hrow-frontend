@@ -2,6 +2,8 @@
 import React, { useEffect } from 'react'
 
 import { createRow } from '../../services'
+import { Button } from '../button/Button'
+import { Printable } from '../../modules/printable/Printable'
 
 import { Form, GenericInput } from './styles'
 
@@ -14,14 +16,15 @@ export const Order = ({ data, setData }) => {
     })
   }, [])
 
-  const handleSubmit = e => {
+  const handleSubmit = async e => {
     e.preventDefault()
     var newData = {}
     var zeroLessKeys = Object.keys(data).filter(this_fruit =>
       Boolean(data[this_fruit])
     )
     zeroLessKeys.forEach(key => (newData[key] = data[key]))
-    createRow(newData)
+    await createRow(newData)
+    window.print()
     setData({
       orderPad: '',
       queue: data.queue + 1,
@@ -33,7 +36,7 @@ export const Order = ({ data, setData }) => {
 
   return (
     <>
-      <Form onSubmit={handleSubmit}>
+      <Form onSubmit={handleSubmit} className='no_printable'>
         <GenericInput
           type='text'
           placeholder={'Comanda'}
@@ -64,8 +67,11 @@ export const Order = ({ data, setData }) => {
             setData({ ...data, longRow: parseInt(e.target.value) })
           }
         />
-        <button type='submit'>Gerar senha</button>
+        <Button type='submit'>Gerar senha</Button>
       </Form>
+      <div className='printable'>
+        <Printable {...data} />
+      </div>
     </>
   )
 }

@@ -28,21 +28,24 @@ export default function Home() {
     if (Boolean(data.queue)) {
       localStorage.setItem('counter', data.queue)
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [data.queue, Order])
 
   return (
     <>
       <Order data={data} setData={setData} />
-      <CardContainer>
-        {rows &&
-          rows.map(row => {
-            return (
-              <div key={row.id}>
-                <Card key={row.id} {...row} />
-              </div>
-            )
-          })}
-      </CardContainer>
+      <div className='no_printable'>
+        <CardContainer>
+          {rows &&
+            rows.map(row => {
+              return (
+                <div key={row.id}>
+                  <Card {...row} />
+                </div>
+              )
+            })}
+        </CardContainer>
+      </div>
     </>
   )
 }
